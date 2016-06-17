@@ -6,32 +6,231 @@
   <link rel="stylesheet" href="./jquery-ui.css">
   <script src="./external/jquery/jquery.js"></script>
   <script src="jquery-ui.js"></script>
-	<canvas id="myChart" width="400" height="400"></canvas>
+	<canvas id="myChart" width="400" height="100"></canvas>
 
 
 
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
   <script>
-	var patients;
+	var patients = 0;
+	var hospVisits = 0;
+	var hospCost = 0;
+	var adhere = 0;
+	var liklihoodOfHosp = 0;
+	var hospChane = 0;
+	var cost_patient = 0;
+	var integration_fee = 0;
+	var savings = 0;
+	var yearsavings = 0;
 
 	$(function() {
-    $( "#slider" ).slider({
-      range: "min",
-      min: 0,
-      max: 30,
-      value: 0,
-      slide: function( event, ui ) {
-        $( "#amount" ).val( ui.value );
+		$( "#slider1" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#patients" ).val( ui.value );
 				//calculate math here
 				patients = ui.value;
-				savings = '$' + (ui.value * 10);
-				console.log(myChart.data.datasets[0].data[0] = patients);
+				savings = hospVisits + patients;
+				yearsavings = savings * 5;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = patients;
+				myChart.data.datasets[0].data[1] = patients * 2;
+				myChart.data.datasets[0].data[2] = patients * 4;
+				myChart.data.datasets[0].data[3] = patients * 8;
+				myChart.data.datasets[0].data[4] = patients * 16;
+				myChart.data.datasets[0].data[5] = patients * 35;
 				myChart.update();
-      }
-    });
-    $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
-  });
+			}
+		});
+		$( "#patients" ).val( $( "#slider1" ).slider( "value" ) );
+	});
+
+	$(function() {
+		$( "#slider2" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#hospVisits" ).val( ui.value );
+				//calculate math here
+				hospVisits = ui.value;
+				savings = hospVisits + patients;
+				yearsavings = savings * 5;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = hospVisits;
+				myChart.data.datasets[0].data[1] = hospVisits * 2;
+				myChart.data.datasets[0].data[2] = hospVisits * 4;
+				myChart.data.datasets[0].data[3] = hospVisits * 8;
+				myChart.data.datasets[0].data[4] = hospVisits * 16;
+				myChart.data.datasets[0].data[5] = hospVisits * 35;
+				myChart.update();
+			}
+		});
+		$( "#hospVisits" ).val( $( "#slider2" ).slider( "value" ) );
+	});
+
+	$(function() {
+		$( "#slider3" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#hospCost" ).val( ui.value );
+				//calculate math here
+				hospCost = ui.value;
+				savings = hospVisits + hospCost + patients;
+				yearsavings = savings * 15;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = hospCost;
+				myChart.data.datasets[0].data[1] = hospCost * 2;
+				myChart.data.datasets[0].data[2] = hospCost * 4;
+				myChart.data.datasets[0].data[3] = hospCost * 8;
+				myChart.data.datasets[0].data[4] = hospCost * 16;
+				myChart.data.datasets[0].data[5] = hospCost * 25;
+				myChart.update();
+			}
+		});
+		$( "#hospCost" ).val( $( "#slider3" ).slider( "value" ) );
+	});
+
+	$(function() {
+		$( "#slider4" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#adhere" ).val( ui.value );
+				//calculate math here
+				adhere = ui.value;
+				savings = hospVisits + adhere + patients;
+				yearsavings = savings * 15;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = adhere;
+				myChart.data.datasets[0].data[1] = adhere * 2;
+				myChart.data.datasets[0].data[2] = adhere * 4;
+				myChart.data.datasets[0].data[3] = adhere * 8;
+				myChart.data.datasets[0].data[4] = adhere * 16;
+				myChart.data.datasets[0].data[5] = adhere * 25;
+				myChart.update();
+			}
+		});
+		$( "#adhere" ).val( $( "#slider4" ).slider( "value" ) );
+	});
+
+	$(function() {
+		$( "#slider5" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#liklihoodOfHosp" ).val( ui.value );
+				//calculate math here
+				liklihoodOfHosp = ui.value;
+				savings = hospVisits + liklihoodOfHosp + patients;
+				yearsavings = savings * 15;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = liklihoodOfHosp;
+				myChart.data.datasets[0].data[1] = liklihoodOfHosp * 2;
+				myChart.data.datasets[0].data[2] = liklihoodOfHosp * 4;
+				myChart.data.datasets[0].data[3] = liklihoodOfHosp * 8;
+				myChart.data.datasets[0].data[4] = liklihoodOfHosp * 16;
+				myChart.data.datasets[0].data[5] = liklihoodOfHosp * 25;
+				myChart.update();
+			}
+		});
+		$( "#liklihoodOfHosp" ).val( $( "#slider5" ).slider( "value" ) );
+	});
+
+	$(function() {
+		$( "#slider6" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#hospChane" ).val( ui.value );
+				//calculate math here
+				hospChane = ui.value;
+				savings = hospVisits + hospChane + patients;
+				yearsavings = savings * 15;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = hospChane;
+				myChart.data.datasets[0].data[1] = hospChane * 2;
+				myChart.data.datasets[0].data[2] = hospChane * 4;
+				myChart.data.datasets[0].data[3] = hospChane * 8;
+				myChart.data.datasets[0].data[4] = hospChane * 16;
+				myChart.data.datasets[0].data[5] = hospChane * 25;
+				myChart.update();
+			}
+		});
+		$( "#hospChane" ).val( $( "#slider6" ).slider( "value" ) );
+	});
+
+	$(function() {
+		$( "#slider7" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#cost_patient" ).val( ui.value );
+				//calculate math here
+				cost_patient = ui.value;
+				savings = hospVisits + cost_patient + patients;
+				yearsavings = savings * 15;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = cost_patient;
+				myChart.data.datasets[0].data[1] = cost_patient * 2;
+				myChart.data.datasets[0].data[2] = cost_patient * 4;
+				myChart.data.datasets[0].data[3] = cost_patient * 8;
+				myChart.data.datasets[0].data[4] = cost_patient * 16;
+				myChart.data.datasets[0].data[5] = cost_patient * 25;
+				myChart.update();
+			}
+		});
+		$( "#cost_patient" ).val( $( "#slider7" ).slider( "value" ) );
+	});
+
+	$(function() {
+		$( "#slider8" ).slider({
+			range: "min",
+			min: 0,
+			max: 30,
+			value: 0,
+			slide: function( event, ui ) {
+				$( "#integration_fee" ).val( ui.value );
+				//calculate math here
+				integration_fee = ui.value;
+				savings = hospVisits + integration_fee + patients;
+				yearsavings = savings * 15;
+				$( "#sum" ).val(savings);
+				$( "#yearsavings" ).val(yearsavings);
+				myChart.data.datasets[0].data[0] = integration_fee;
+				myChart.data.datasets[0].data[1] = integration_fee * 2;
+				myChart.data.datasets[0].data[2] = integration_fee * 4;
+				myChart.data.datasets[0].data[3] = integration_fee * 8;
+				myChart.data.datasets[0].data[4] = integration_fee * 16;
+				myChart.data.datasets[0].data[5] = integration_fee * 25;
+				myChart.update();
+			}
+		});
+		$( "#integration_fee" ).val( $( "#slider8" ).slider( "value" ) );
+	});
   </script>
 
 
@@ -41,12 +240,12 @@
 
 		var ctx = document.getElementById("myChart");
 		var myChart = new Chart(ctx, {
-			type: 'bar',
+			type: 'line',
 			data: {
-					labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+					labels: ['0', '2,000', '4,000', '6,000', '8,000', '10,000'],
 					datasets: [{
-							label: '# of Votes',
-							data: [12, 19, 3, 5, 2, 3],
+							label: 'Yealy Savings',
+							data: [0, 5, 10, 15, 40, 65],
 							backgroundColor: [
 									'rgba(255, 99, 132, 0.2)',
 									'rgba(54, 162, 235, 0.2)',
@@ -82,14 +281,82 @@
 </head>
 <body>
 
-	<canvas id="myChart" width="400" height="400"></canvas>
+	<div>
 
-	<p>
-	  <label for="amount">Paitents:</label>
-	  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-	</p>
 
-	<div id="slider"></div>
+			<div style="width:700px; display:inline-block; padding:20px; margin-left:50px;">
+
+				<div style="width:300px; display:inline-block; text-align:left;">
+					<p>
+					  <label for="patients" >Paitents:</label><br />
+					  <input type="text" id="patients" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider1" style="width:200px; display:inline-block;"></div>
+
+					<p>
+					  <label for="hospVisits" style="display:inline-block;" >Avg. Hospital Visits\Patient:</label>
+					  <input type="text" id="hospVisits" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider2" style="width:200px; display:inline-block;"></div>
+
+					<p>
+					  <label for="hospCost" style="display:inline-block;" >Avg. Cost of Hospitilzation:</label>
+					  <input type="text" id="hospCost" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider3" style="width:200px; display:inline-block;"></div>
+
+					<p>
+					  <label for="adhere" style="display:inline-block;" >Est. Lift in Adherence:</label><br />
+					  <input type="text" id="adhere" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider4" style="width:200px; display:inline-block;"></div>
+				</div>
+
+				<div style="width:300px; display:inline-block; text-align:left;">
+					<p>
+					  <label for="liklihoodOfHosp" >Decrease Liklihood of Hospitalization/10%:</label>
+					  <input type="text" id="liklihoodOfHosp" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider5" style="width:200px; display:inline-block;"></div>
+
+					<p>
+					  <label for="hospChane" style="display:inline-block;" >Hospitalization Chane:</label><br />
+					  <input type="text" id="hospChane" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider6" style="width:200px; display:inline-block;"></div>
+
+					<p>
+					  <label for="cost_patient" style="display:inline-block;" >Cost/Patient:</label><br />
+					  <input type="text" id="cost_patient" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider7" style="width:200px; display:inline-block;"></div>
+
+					<p>
+					  <label for="integration_fee" style="display:inline-block;" >1 Time Integration Fee:</label><br />
+					  <input type="text" id="integration_fee" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</p>
+					<div id="slider8" style="width:200px; display:inline-block;"></div>
+				</div>
+
+			</div>
+
+			<div id="displaybox" style="width:300px; float:right; display:inline-block; padding:20px; margin-right:145px; text-align:center; ">
+				<p>
+				  <label for="sum">ROI:</label>
+				  <input type="text" value=0 id="sum" readonly style="border:0; color:#f6931f; font-weight:bold;">
+				</p>
+
+				<p>
+				  <label for="yearsavings">ANUAL SAVINGS:</label>
+				  <input type="text" value=0 id="yearsavings" readonly style="border:0; color:#f6931f; font-weight:bold;">
+				</p>
+
+			</div>
+
+
+	</div>
+
+
 
 
 </body>
