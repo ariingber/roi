@@ -1,11 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <meta charset="utf-8">
   <title>ROI</title>
   <link rel="stylesheet" href="./jquery-ui.css">
+  <link rel="stylesheet" href="./style.css">
   <script src="./external/jquery/jquery.js"></script>
   <script src="jquery-ui.js"></script>
+  <p style="text-align:center;">TITLE LOGO</p>
 	<canvas id="myChart" width="400" height="100"></canvas>
 
 
@@ -21,7 +24,7 @@
 	var hospChane = 0;
 	var cost_patient = 0;
 	var integration_fee = 0;
-	var savings = 0;
+	var roi = 0;
 	var yearsavings = 0;
 
 	$(function() {
@@ -34,9 +37,9 @@
 				$( "#patients" ).val( ui.value );
 				//calculate math here
 				patients = ui.value;
-				savings = hospVisits + patients;
-				yearsavings = savings * 5;
-				$( "#sum" ).val(savings);
+				roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = patients;
 				myChart.data.datasets[0].data[1] = patients * 2;
@@ -60,9 +63,9 @@
 				$( "#hospVisits" ).val( ui.value );
 				//calculate math here
 				hospVisits = ui.value;
-				savings = hospVisits + patients;
-				yearsavings = savings * 5;
-				$( "#sum" ).val(savings);
+        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = hospVisits;
 				myChart.data.datasets[0].data[1] = hospVisits * 2;
@@ -86,9 +89,9 @@
 				$( "#hospCost" ).val( ui.value );
 				//calculate math here
 				hospCost = ui.value;
-				savings = hospVisits + hospCost + patients;
-				yearsavings = savings * 15;
-				$( "#sum" ).val(savings);
+        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = hospCost;
 				myChart.data.datasets[0].data[1] = hospCost * 2;
@@ -112,9 +115,9 @@
 				$( "#adhere" ).val( ui.value );
 				//calculate math here
 				adhere = ui.value;
-				savings = hospVisits + adhere + patients;
-				yearsavings = savings * 15;
-				$( "#sum" ).val(savings);
+        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = adhere;
 				myChart.data.datasets[0].data[1] = adhere * 2;
@@ -138,9 +141,9 @@
 				$( "#liklihoodOfHosp" ).val( ui.value );
 				//calculate math here
 				liklihoodOfHosp = ui.value;
-				savings = hospVisits + liklihoodOfHosp + patients;
-				yearsavings = savings * 15;
-				$( "#sum" ).val(savings);
+        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = liklihoodOfHosp;
 				myChart.data.datasets[0].data[1] = liklihoodOfHosp * 2;
@@ -164,9 +167,9 @@
 				$( "#hospChane" ).val( ui.value );
 				//calculate math here
 				hospChane = ui.value;
-				savings = hospVisits + hospChane + patients;
-				yearsavings = savings * 15;
-				$( "#sum" ).val(savings);
+        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = hospChane;
 				myChart.data.datasets[0].data[1] = hospChane * 2;
@@ -184,15 +187,15 @@
 		$( "#slider7" ).slider({
 			range: "min",
 			min: 0,
-			max: 30,
+			max: 50,
 			value: 0,
 			slide: function( event, ui ) {
 				$( "#cost_patient" ).val( ui.value );
 				//calculate math here
 				cost_patient = ui.value;
-				savings = hospVisits + cost_patient + patients;
-				yearsavings = savings * 15;
-				$( "#sum" ).val(savings);
+        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = cost_patient;
 				myChart.data.datasets[0].data[1] = cost_patient * 2;
@@ -216,9 +219,9 @@
 				$( "#integration_fee" ).val( ui.value );
 				//calculate math here
 				integration_fee = ui.value;
-				savings = hospVisits + integration_fee + patients;
-				yearsavings = savings * 15;
-				$( "#sum" ).val(savings);
+        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
+				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
+				$( "#sum" ).val(roi);
 				$( "#yearsavings" ).val(yearsavings);
 				myChart.data.datasets[0].data[0] = integration_fee;
 				myChart.data.datasets[0].data[1] = integration_fee * 2;
@@ -281,75 +284,83 @@
 </head>
 <body>
 
+
 	<div>
 
 
-			<div style="width:700px; display:inline-block; padding:20px; margin-left:50px;">
+			<div style="width:1250px; display:inline-block; padding:20px; margin-left:50px;">
 
-				<div style="width:300px; display:inline-block; text-align:left;">
-					<p>
-					  <label for="patients" >Paitents:</label><br />
-					  <input type="text" id="patients" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider1" style="width:200px; display:inline-block;"></div>
+				<div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
+					<div>
+					  <label for="hospVisits" style="display:inline-block;" >Avg Hosp Visits\Patient:</label>
+					  <input type="text" id="hospVisits">
+            <div class="slide" id="slider2"></div>
+					</div>
+					<div>
+					  <label for="hospCost" style="display:inline-block;" >Avg Cost of Hosp:</label>
+					  <input type="text" id="hospCost">
+            <div class="slide" id="slider3"></div>
+					</div>
+        </div>
 
-					<p>
-					  <label for="hospVisits" style="display:inline-block;" >Avg. Hospital Visits\Patient:</label>
-					  <input type="text" id="hospVisits" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider2" style="width:200px; display:inline-block;"></div>
+				<div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
+					<div>
+					  <label for="liklihoodOfHosp" >Decrease of Hosp:</label>
+					  <input type="text" id="liklihoodOfHosp">
+            <div class= "slide" id="slider5"></div>
+					</div>
+					<div>
+					  <label for="hospChane" style="display:inline-block;" >Hospitalization Chane:</label>
+					  <input type="text" id="hospChane">
+            <div id="slider6" class="slide" ></div>
+					</div>
 
-					<p>
-					  <label for="hospCost" style="display:inline-block;" >Avg. Cost of Hospitilzation:</label>
-					  <input type="text" id="hospCost" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider3" style="width:200px; display:inline-block;"></div>
-
-					<p>
-					  <label for="adhere" style="display:inline-block;" >Est. Lift in Adherence:</label><br />
-					  <input type="text" id="adhere" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider4" style="width:200px; display:inline-block;"></div>
 				</div>
 
-				<div style="width:300px; display:inline-block; text-align:left;">
-					<p>
-					  <label for="liklihoodOfHosp" >Decrease Liklihood of Hospitalization/10%:</label>
-					  <input type="text" id="liklihoodOfHosp" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider5" style="width:200px; display:inline-block;"></div>
+        <div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
+          <div>
+					  <label for="adhere" style="display:inline-block;"> Lift in Adherence:</label>
+					  <input type="text" id="adhere">
+					  <div class= "slide" id="slider4"></div>
+				  </div>
 
-					<p>
-					  <label for="hospChane" style="display:inline-block;" >Hospitalization Chane:</label><br />
-					  <input type="text" id="hospChane" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider6" style="width:200px; display:inline-block;"></div>
-
-					<p>
-					  <label for="cost_patient" style="display:inline-block;" >Cost/Patient:</label><br />
-					  <input type="text" id="cost_patient" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider7" style="width:200px; display:inline-block;"></div>
-
-					<p>
-					  <label for="integration_fee" style="display:inline-block;" >1 Time Integration Fee:</label><br />
-					  <input type="text" id="integration_fee" readonly style="border:0; color:#f6931f; font-weight:bold;">
-					</p>
-					<div id="slider8" style="width:200px; display:inline-block;"></div>
+          <div>
+					  <label for="cost_patient" style="display:inline-block;" >Cost/Patient:</label>
+					  <input type="text" id="cost_patient">
+            <div class="slide" id="slider7"></div>
+					</div>
 				</div>
 
-			</div>
+        <div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
+          <div>
+					  <label for="patients" style="display:inline-block;" >Number of Patients:</label>
+					  <input type="text" id="patients">
+            <div class="slide" id="slider1"></div>
+					</div>
 
-			<div id="displaybox" style="width:300px; float:right; display:inline-block; padding:20px; margin-right:145px; text-align:center; ">
-				<p>
-				  <label for="sum">ROI:</label>
-				  <input type="text" value=0 id="sum" readonly style="border:0; color:#f6931f; font-weight:bold;">
-				</p>
+          <div>
+					  <label for="integration_fee" style="display:inline-block;" >Integration Fee:</label>
+					  <input type="text" id="integration_fee">
+            <div class="slide" id="slider8"></div>
+					</div>
 
-				<p>
-				  <label for="yearsavings">ANUAL SAVINGS:</label>
-				  <input type="text" value=0 id="yearsavings" readonly style="border:0; color:#f6931f; font-weight:bold;">
-				</p>
+				</div>
+
+        <div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
+
+          <div>
+  				  <label for="sum">ROI%/Yr:</label>
+  				  <input type="text" value=0 id="sum">
+            <div class="slide"></div>
+  				</div>
+
+					<div>
+    				<label for="yearsavings">ANUAL SAVINGS:</label>
+    				<input type="text" value=0 id="yearsavings">
+            <div class="slide"></div>
+					</div>
+
+				</div>
 
 			</div>
 

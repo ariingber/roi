@@ -1,0 +1,15 @@
+label {
+  font-size: 15px;
+}
+
+input {
+  display: inline;
+  color:#d95c5c;
+  font-weight:bold;
+}
+
+.slide {
+  width:200px;
+  margin-bottom: 25px;
+  display:inline-block
+}
