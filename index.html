@@ -1,372 +1,116 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>ROI</title>
-  <link rel="stylesheet" href="./jquery-ui.css">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./external/jquery/jquery.js"></script>
-  <script src="jquery-ui.js"></script>
-  <p style="text-align:left; margin-left:25px;">COHERO ROI CALCULATOR</p>
 
-	<canvas id="myChart" width="400" height="100"></canvas>
-  <p style="text-align:center; color:#c0deed; margin-top:-20px;">Number of Patients</p>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="https://use.fontawesome.com/58567dd66f.js"></script>
 
-
-
-
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
-  <script>
-	var patients = 0;
-	var hospVisits = 0;
-	var hospCost = 0;
-	var adhere = 0;
-	var liklihoodOfHosp = 0;
-	var hospChane = 0;
-	var cost_patient = 0;
-	var integration_fee = 0;
-	var roi = 0;
-	var yearsavings = 0;
-
-	$(function() {
-		$( "#slider1" ).slider({
-			range: "min",
-			min: 0,
-			max: 30,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#patients" ).val( ui.value );
-				//calculate math here
-				patients = ui.value;
-				roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = patients;
-				myChart.data.datasets[0].data[1] = patients * 2;
-				myChart.data.datasets[0].data[2] = patients * 4;
-				myChart.data.datasets[0].data[3] = patients * 8;
-				myChart.data.datasets[0].data[4] = patients * 16;
-				myChart.data.datasets[0].data[5] = patients * 35;
-				myChart.update();
-			}
-		});
-		$( "#patients" ).val( $( "#slider1" ).slider( "value" ) );
-	});
-
-	$(function() {
-		$( "#slider2" ).slider({
-			range: "min",
-			min: 0,
-			max: 30,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#hospVisits" ).val( ui.value );
-				//calculate math here
-				hospVisits = ui.value;
-        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = hospVisits;
-				myChart.data.datasets[0].data[1] = hospVisits * 2;
-				myChart.data.datasets[0].data[2] = hospVisits * 4;
-				myChart.data.datasets[0].data[3] = hospVisits * 8;
-				myChart.data.datasets[0].data[4] = hospVisits * 16;
-				myChart.data.datasets[0].data[5] = hospVisits * 35;
-				myChart.update();
-			}
-		});
-		$( "#hospVisits" ).val( $( "#slider2" ).slider( "value" ) );
-	});
-
-	$(function() {
-		$( "#slider3" ).slider({
-			range: "min",
-			min: 0,
-			max: 30,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#hospCost" ).val( ui.value );
-				//calculate math here
-				hospCost = ui.value;
-        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = hospCost;
-				myChart.data.datasets[0].data[1] = hospCost * 2;
-				myChart.data.datasets[0].data[2] = hospCost * 4;
-				myChart.data.datasets[0].data[3] = hospCost * 8;
-				myChart.data.datasets[0].data[4] = hospCost * 16;
-				myChart.data.datasets[0].data[5] = hospCost * 25;
-				myChart.update();
-			}
-		});
-		$( "#hospCost" ).val( $( "#slider3" ).slider( "value" ) );
-	});
-
-	$(function() {
-		$( "#slider4" ).slider({
-			range: "min",
-			min: 0,
-			max: 30,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#adhere" ).val( ui.value );
-				//calculate math here
-				adhere = ui.value;
-        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = adhere;
-				myChart.data.datasets[0].data[1] = adhere * 2;
-				myChart.data.datasets[0].data[2] = adhere * 4;
-				myChart.data.datasets[0].data[3] = adhere * 8;
-				myChart.data.datasets[0].data[4] = adhere * 16;
-				myChart.data.datasets[0].data[5] = adhere * 25;
-				myChart.update();
-			}
-		});
-		$( "#adhere" ).val( $( "#slider4" ).slider( "value" ) );
-	});
-
-	$(function() {
-		$( "#slider5" ).slider({
-			range: "min",
-			min: 0,
-			max: 30,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#liklihoodOfHosp" ).val( ui.value );
-				//calculate math here
-				liklihoodOfHosp = ui.value;
-        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = liklihoodOfHosp;
-				myChart.data.datasets[0].data[1] = liklihoodOfHosp * 2;
-				myChart.data.datasets[0].data[2] = liklihoodOfHosp * 4;
-				myChart.data.datasets[0].data[3] = liklihoodOfHosp * 8;
-				myChart.data.datasets[0].data[4] = liklihoodOfHosp * 16;
-				myChart.data.datasets[0].data[5] = liklihoodOfHosp * 25;
-				myChart.update();
-			}
-		});
-		$( "#liklihoodOfHosp" ).val( $( "#slider5" ).slider( "value" ) );
-	});
-
-	$(function() {
-		$( "#slider6" ).slider({
-			range: "min",
-			min: 0,
-			max: 30,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#hospChane" ).val( ui.value );
-				//calculate math here
-				hospChane = ui.value;
-        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = hospChane;
-				myChart.data.datasets[0].data[1] = hospChane * 2;
-				myChart.data.datasets[0].data[2] = hospChane * 4;
-				myChart.data.datasets[0].data[3] = hospChane * 8;
-				myChart.data.datasets[0].data[4] = hospChane * 16;
-				myChart.data.datasets[0].data[5] = hospChane * 25;
-				myChart.update();
-			}
-		});
-		$( "#hospChane" ).val( $( "#slider6" ).slider( "value" ) );
-	});
-
-	$(function() {
-		$( "#slider7" ).slider({
-			range: "min",
-			min: 0,
-			max: 50,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#cost_patient" ).val( ui.value );
-				//calculate math here
-				cost_patient = ui.value;
-        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = cost_patient;
-				myChart.data.datasets[0].data[1] = cost_patient * 2;
-				myChart.data.datasets[0].data[2] = cost_patient * 4;
-				myChart.data.datasets[0].data[3] = cost_patient * 8;
-				myChart.data.datasets[0].data[4] = cost_patient * 16;
-				myChart.data.datasets[0].data[5] = cost_patient * 25;
-				myChart.update();
-			}
-		});
-		$( "#cost_patient" ).val( $( "#slider7" ).slider( "value" ) );
-	});
-
-	$(function() {
-		$( "#slider8" ).slider({
-			range: "min",
-			min: 0,
-			max: 30,
-			value: 0,
-			slide: function( event, ui ) {
-				$( "#integration_fee" ).val( ui.value );
-				//calculate math here
-				integration_fee = ui.value;
-        roi = (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient) / cost_patient * 100;
-				yearsavings = roi * (patients + hospVisits + adhere + liklihoodOfHosp + hospChane + integration_fee - cost_patient);
-				$( "#sum" ).val(roi);
-				$( "#yearsavings" ).val(yearsavings);
-				myChart.data.datasets[0].data[0] = integration_fee;
-				myChart.data.datasets[0].data[1] = integration_fee * 2;
-				myChart.data.datasets[0].data[2] = integration_fee * 4;
-				myChart.data.datasets[0].data[3] = integration_fee * 8;
-				myChart.data.datasets[0].data[4] = integration_fee * 16;
-				myChart.data.datasets[0].data[5] = integration_fee * 25;
-				myChart.update();
-			}
-		});
-		$( "#integration_fee" ).val( $( "#slider8" ).slider( "value" ) );
-	});
-  </script>
-
-
-	<script src="Chart.js"></script>
-
-	<script>
-
-		var ctx = document.getElementById("myChart");
-		var myChart = new Chart(ctx, {
-			type: 'line',
-			data: {
-					labels: ['0', '2,000', '4,000', '6,000', '8,000', '10,000'],
-					datasets: [{
-							label: 'Yealy Savings in Dollars',
-							data: [0, 0, 0, 0, 0, 20000],
-							backgroundColor: [
-									'rgba(255, 99, 132, 0.2)'
-							],
-							borderColor: [
-									'rgba(255,99,132,1)'
-							],
-							borderWidth: 1
-					}]
-			},
-			options: {
-          responsive: true,
-          title: {
-            display: true,
-            text: 'YEARLY ROI BASED ON NUMBER OF PATIENTS'
-          },
-					scales: {
-							yAxes: [{
-									ticks: {
-											beginAtZero:true
-									}
-							}]
-					}
-			}
-		});
-	</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link href="css/nouislider.css" rel="stylesheet">
 
 
 </head>
 <body>
+  <br>
+  <div class="row">
+	  <canvas id="myChart"  height="100"></canvas><br><br>
+  </div>
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s3">
+          <div style="font-size: .9rem; color: #9e9e9e; display:inline;"> Average Asthema Related Emergency Room Visits Per Year <div style="display:inline; text-decoration:underline;"id=slider-valueAvgEmergVisit></div> </div><br><br>
+          <div class=slide id=slideAvgEmergVisit></div>
+        </div>
+        <div class="input-field col s3">
+          <div style="font-size: .9rem; color: #9e9e9e; display:inline;"> Years Invested in CoHero <div style="display:inline; text-decoration:underline;"id=slider-valueYearsOfInvestment></div> </div><br>
+          <div style="font-size: .9rem; color: #9e9e9e; display:inline;"> Cost Of Investment $<div style="display:inline; text-decoration:underline;"id=slider-valueCostOfInvestment></div> </div><br><br>
+          <div class=slide id=slideYearsOfInvestment></div>
+        </div>
+        <div class="input-field col s3">
+          <div style="font-size: 1rem; color: #9e9e9e; display:inline;"> Open Input Field </div>
+          <input onsubmit="ari(); return false">
+        </div>
+        <div class="input-field col s3">
+          <!-- <div style="font-size: 1rem; color: #9e9e9e; display:inline;"> ROI % per Year | Total Savings </div> -->
+          <div class="input-field col s4">
+            <div style="font-size: 1rem; color: #9e9e9e;"> Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 1 Year </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 2 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 3 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 4 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 5 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 6 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 7 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 8 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 9 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 10 Years </div>
+          </div>
+          <div class="input-field col s4">
+            <div style="font-size: 1rem; color: #9e9e9e;"> ROI % </div>
+            <div id=roiDisplay1 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay2 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay3 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay4 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay5 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay6 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay7 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay8 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay9 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay10 style="font-size: .7rem; color: #9e9e9e;">  </div>
+          </div>
+          <div class="input-field col s4">
+            <div style="font-size: 1rem; color: #9e9e9e;"> Savings </div>
+            <div id=savingsDisplay1 style="font-size: .7rem; color: #9e9e9e;"> </div>
+            <div id=savingsDisplay2 style="font-size: .7rem; color: #9e9e9e;"> </div>
+            <div id=savingsDisplay3 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=savingsDisplay4 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=savingsDisplay5 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=savingsDisplay6 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=savingsDisplay7 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=savingsDisplay8 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=savingsDisplay9 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=savingsDisplay10 style="font-size: .7rem; color: #9e9e9e;">  </div>
+          </div>
+          <!-- <div style="font-size: 1rem; color: #9e9e9e;" class="input-field col s4"> ROI % </div>
+          <div style="font-size: 1rem; color: #9e9e9e;" class="input-field col s4"> Savings </div><br>
 
 
-	<div>
+          <div style="font-size: .7rem; color: #9e9e9e;" class="input-field col s4">  </div>
+          <div style="font-size: .7rem; color: #9e9e9e;" class="input-field col s4">  </div><br>
+
+          <div style="font-size: .7rem; color: #9e9e9e;" class="input-field col s4"> 2 Years </div>
+          <div style="font-size: .7rem; color: #9e9e9e;" class="input-field col s4">  </div>
+          <div style="font-size: .7rem; color: #9e9e9e;" class="input-field col s4">  </div> -->
+            <!-- <div id="roiDisplay"> 2 </div><div id="savingsDisplay">2</div> -->
 
 
-			<div style="width:1250px; display:inline-block; padding:20px; margin-left:50px;">
-
-				<div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
-					<div>
-					  <label for="hospVisits" style="display:inline-block;" >Avg Hosp Visits\Patient:</label>
-					  <input type="text" id="hospVisits">
-            <div class="slide" id="slider2"></div>
-					</div>
-					<div>
-					  <label for="hospCost" style="display:inline-block;" >Avg Cost of Hosp:</label>
-					  <input type="text" id="hospCost">
-            <div class="slide" id="slider3"></div>
-					</div>
         </div>
 
-				<div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
-					<div>
-					  <label for="liklihoodOfHosp" >Decrease of Hosp:</label>
-					  <input type="text" id="liklihoodOfHosp">
-            <div class= "slide" id="slider5"></div>
-					</div>
-					<div>
-					  <label for="hospChane" style="display:inline-block;" >Hospitalization Chane:</label>
-					  <input type="text" id="hospChane">
-            <div id="slider6" class="slide" ></div>
-					</div>
+      </div>
 
-				</div>
-
-        <div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
-          <div>
-					  <label for="adhere" style="display:inline-block;"> Lift in Adherence:</label>
-					  <input type="text" id="adhere">
-					  <div class= "slide" id="slider4"></div>
-				  </div>
-
-          <div>
-					  <label for="cost_patient" style="display:inline-block;" >Cost/Patient:</label>
-					  <input type="text" id="cost_patient">
-            <div class="slide" id="slider7"></div>
-					</div>
-				</div>
-
-        <div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
-          <div>
-					  <label for="patients" style="display:inline-block;" >Number of Patients:</label>
-					  <input type="text" id="patients">
-            <div class="slide" id="slider1"></div>
-					</div>
-
-          <div>
-					  <label for="integration_fee" style="display:inline-block;" >Integration Fee:</label>
-					  <input type="text" id="integration_fee">
-            <div class="slide" id="slider8"></div>
-					</div>
-
-				</div>
-
-        <div style="width:210px; margin-right:25px; display:inline-block; text-align:left;">
-
-          <div>
-  				  <label for="sum">ROI%/Yr:</label>
-  				  <input type="text" value=0 id="sum">
-            <div class="slide"></div>
-  				</div>
-
-					<div>
-    				<label for="yearsavings">ANUAL SAVINGS:</label>
-    				<input type="text" value=0 id="yearsavings">
-            <div class="slide"></div>
-					</div>
-
-				</div>
-
-			</div>
-
-
-	</div>
+    </form>
+  </div>
 
 
 
+
+  <script src="js/nouislider.js"></script>
+  <script src="js/Chart.js"></script>
+
+
+  <script src="js/roiChart.js"></script>
+
+
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
 
 </body>
 </html>
