@@ -26,16 +26,18 @@ var roiDisplay9 = document.getElementById('roiDisplay9');
 var savingsDisplay10 = document.getElementById('savingsDisplay10');
 var roiDisplay10 = document.getElementById('roiDisplay10');
 
+var sliderValueAvgEmergVisit = document.getElementById('slider-valueAvgEmergVisit');
+var sliderValueYearsOfInvestment = document.getElementById('slider-valueYearsOfInvestment');
+var sliderValueCostOfInvestment = document.getElementById('slider-valueCostOfInvestment');
+var slideAvgEmergVisit = document.getElementById('slideAvgEmergVisit');
+
 var savingsDisplays = [ savingsDisplay1, savingsDisplay2, savingsDisplay3,
   savingsDisplay4, savingsDisplay5, savingsDisplay6,savingsDisplay7,
   savingsDisplay8, savingsDisplay9, savingsDisplay10 ]
 var roiDisplays = [ roiDisplay1, roiDisplay2, roiDisplay3, roiDisplay4,
   roiDisplay5, roiDisplay6, roiDisplay7, roiDisplay8, roiDisplay9, roiDisplay10 ]
 
-var sliderValueAvgEmergVisit = document.getElementById('slider-valueAvgEmergVisit');
-var sliderValueYearsOfInvestment = document.getElementById('slider-valueYearsOfInvestment');
-var sliderValueCostOfInvestment = document.getElementById('slider-valueCostOfInvestment');
-var slideAvgEmergVisit = document.getElementById('slideAvgEmergVisit');
+
 
 
 //create sliders
@@ -78,6 +80,7 @@ function changesYearsOfInvest ( values, handle ) {
   chartUpdate()
 };
 
+//THIS IS THE OPEN FIELD VALUE JQUERY
 $('input').keyup( function() {
   openFieldValue = parseInt($(this).val());
   chartUpdate ();
@@ -85,20 +88,20 @@ $('input').keyup( function() {
 
 
 
-//chart update function and math done here
+//CHART UPDATE FORMULAS, LINES DRAWN, RIGHT SIDE VALUES UPADATED
 function chartUpdate () {
   costOfInvestment = yearsOfInvestment * 1000;
   sliderValueYearsOfInvestment.innerHTML = yearsOfInvestment;
   sliderValueCostOfInvestment.innerHTML = costOfInvestment;
   sliderValueAvgEmergVisit.innerHTML = avgEmergHospVis;
 
-
+//ONE TIME COST LINE DRAWN
   for (i = 0; i <= 9; i++) {
     myChart.data.datasets[1].data[i] = costOfInvestment;
   }
   myChart.update();
 
-
+//EQUATION FOR EACH YEAR, PINK LINES DRAWN, ROI AND SAVINGS INNERHTML UPADATE
   for (i = 0; i <= 9; i++) {
     myChart.data.datasets[0].data[i] = (openFieldValue * avgEmergHospVis * (i+1)) - costOfInvestment;
     savingsDisplays[i].innerHTML = '$' + ((openFieldValue * avgEmergHospVis * (i+1)) - costOfInvestment).toFixed(2);
