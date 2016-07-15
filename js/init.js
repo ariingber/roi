@@ -135,8 +135,8 @@ function chartUpdate () {
 
   // EQUATION FOR EACH YEAR, PINK LINES DRAWN, ROI AND SAVINGS INNERHTML UPADATE
   for (j=1; j <= 5; j++) {
-    for (i = 0; i <= 9; i++) {
-      myChart.data.datasets[j].data[i] = (costOfInvestment * percentLifts[j] * years[i]) - costOfInvestment;
+    for (k = 0; k <= 9; k++) {
+      myChart.data.datasets[j].data[k] = (costOfInvestment * percentLifts[j - 1] * years[k]);
       // savingsDisplays[i].innerHTML = '$' + ((numberOfPatients * EstimAdhere * (i+1)) - costOfInvestment).toFixed(2);
       // roiDisplays[i].innerHTML = (((numberOfPatients * EstimAdhere * (i+1)) - costOfInvestment)/costOfInvestment).toFixed(2);
     }

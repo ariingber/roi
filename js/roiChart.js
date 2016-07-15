@@ -26,45 +26,45 @@ var myChart = new Chart(ctx, {
       },
       {
         label: '38.2% Lift in Adherance (EXPECTED)',
-        data: [0, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: [
             'transparent'
         ],
         borderColor: [
             '#00897b'
         ],
-        borderWidth: 2.5
+        borderWidth: 2
       },
       {
         label: '30% Lift in Adherance',
-        data: [0, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: [
             'transparent'
         ],
         borderColor: [
-            '#00897b'
+            '#ce93d8'
         ],
         borderWidth: 1
       },
       {
         label: '20% Lift in Adherance',
-        data: [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: [
             'transparent'
         ],
         borderColor: [
-            '#00897b'
+            '#a5d6a7'
         ],
         borderWidth: 1
       },
       {
         label: '10% Lift in Adherance',
-        data: [0, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000],
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         backgroundColor: [
             'transparent'
         ],
         borderColor: [
-            '#00897b'
+            '#ffab40'
         ],
         borderWidth: 1
       }
