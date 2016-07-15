@@ -21,23 +21,38 @@
 	  <canvas id="myChart"  height="100"></canvas><br><br>
   </div>
 
-  <div class="row">
+  <div class="row" style="margin-top:-50px;">
     <form class="col s12">
       <div class="row">
-        <div class="input-field col s3">
-          <div style="font-size: .9rem; color: #9e9e9e; display:inline;"> Average Asthema Related Emergency Room Visits Per Year <div style="display:inline; text-decoration:underline;"id=slider-valueAvgEmergVisit></div> </div><br><br>
-          <div class=slide id=slideAvgEmergVisit></div>
+        <div class="input-field col s1">
+        </div>
+          <div class="input-field col s3" >
+            <div style="font-size: 1rem; color: #9e9e9e; display:inline;"> Number of Patients </div>
+            <input style="margin-top:-57px;" >
+          </div>
+          <div class="input-field col s4">
+            <div style="font-size: .7rem; color: #9e9e9e; display:inline;"> Estimated Adherence w/out CoHero (default based on X research ) <div style="display:inline; text-decoration:underline;"id=slider-valueEstimAdhere></div> </div>
+            <br><br>
+            <div class=slide id=slideEstimAdhere></div>
+          </div>
+          <div class="input-field col s3">
+            <div style="font-size: .7rem; color: #9e9e9e; display:inline;"> Avg. Actuations (puffs) Per Day <div style="display:inline; text-decoration:underline;"id=slider-valuePuffsPerDay></div> </div><br><br>
+            <div class=slide id=slidePuffsPerDay></div>
+          </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row" >
+    <form class="col s12">
+      <div class="row" style="margin-top:-45px;">
+        <div class="input-field col s1">
         </div>
         <div class="input-field col s3">
-          <div style="font-size: .9rem; color: #9e9e9e; display:inline;"> Years Invested in CoHero <div style="display:inline; text-decoration:underline;"id=slider-valueYearsOfInvestment></div> </div><br>
-          <div style="font-size: .9rem; color: #9e9e9e; display:inline;"> Cost Of Investment $<div style="display:inline; text-decoration:underline;"id=slider-valueCostOfInvestment></div> </div><br><br>
-          <div class=slide id=slideYearsOfInvestment></div>
+          <div style="font-size: .7rem; color: #9e9e9e; display:inline;"> Avg Actuations Per Canister <div style="display:inline; text-decoration:underline;"id=slider-valueActuaPerCan></div> </div><br><br>
+          <div class=slide id=slideActuaPerCan></div>
         </div>
-        <div style="margin-top:21px;"class="input-field col s3">
-          <div style="font-size: 1rem; color: #9e9e9e; display:inline;"> Open Input Field </div>
-          <input onsubmit="ari(); return false">
-        </div>
-        <div class="input-field col s3">
+        <div class="input-field col s4">
           <div class="input-field col s4">
             <div style="font-size: 1rem; color: #9e9e9e;"> Years </div>
             <div style="font-size: .7rem; color: #9e9e9e;"> 1 Year </div>
@@ -45,11 +60,6 @@
             <div style="font-size: .7rem; color: #9e9e9e;"> 3 Year </div>
             <div style="font-size: .7rem; color: #9e9e9e;"> 4 Years </div>
             <div style="font-size: .7rem; color: #9e9e9e;"> 5 Year </div>
-            <div style="font-size: .7rem; color: #9e9e9e;"> 6 Years </div>
-            <div style="font-size: .7rem; color: #9e9e9e;"> 7 Year </div>
-            <div style="font-size: .7rem; color: #9e9e9e;"> 8 Years </div>
-            <div style="font-size: .7rem; color: #9e9e9e;"> 9 Year </div>
-            <div style="font-size: .7rem; color: #9e9e9e;"> 10 Years </div>
           </div>
           <div class="input-field col s4">
             <div style="font-size: 1rem; color: #9e9e9e;"> ROI % </div>
@@ -58,11 +68,6 @@
             <div id=roiDisplay3 style="font-size: .7rem; color: #9e9e9e;">  </div>
             <div id=roiDisplay4 style="font-size: .7rem; color: #9e9e9e;">  </div>
             <div id=roiDisplay5 style="font-size: .7rem; color: #9e9e9e;">  </div>
-            <div id=roiDisplay6 style="font-size: .7rem; color: #9e9e9e;">  </div>
-            <div id=roiDisplay7 style="font-size: .7rem; color: #9e9e9e;">  </div>
-            <div id=roiDisplay8 style="font-size: .7rem; color: #9e9e9e;">  </div>
-            <div id=roiDisplay9 style="font-size: .7rem; color: #9e9e9e;">  </div>
-            <div id=roiDisplay10 style="font-size: .7rem; color: #9e9e9e;">  </div>
           </div>
           <div class="input-field col s4">
             <div style="font-size: 1rem; color: #9e9e9e;"> Savings </div>
@@ -71,6 +76,27 @@
             <div id=savingsDisplay3 style="font-size: .7rem; color: #9e9e9e;">  </div>
             <div id=savingsDisplay4 style="font-size: .7rem; color: #9e9e9e;">  </div>
             <div id=savingsDisplay5 style="font-size: .7rem; color: #9e9e9e;">  </div>
+          </div>
+        </div>
+        <div class="input-field col s3">
+          <div class="input-field col s4">
+            <div style="font-size: 1rem; color: #9e9e9e;"> Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 6 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 7 Year </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 8 Years </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 9 Year </div>
+            <div style="font-size: .7rem; color: #9e9e9e;"> 10 Years </div>
+          </div>
+          <div class="input-field col s4">
+            <div style="font-size: 1rem; color: #9e9e9e;"> ROI % </div>
+            <div id=roiDisplay6 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay7 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay8 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay9 style="font-size: .7rem; color: #9e9e9e;">  </div>
+            <div id=roiDisplay10 style="font-size: .7rem; color: #9e9e9e;">  </div>
+          </div>
+          <div class="input-field col s4">
+            <div style="font-size: 1rem; color: #9e9e9e;"> Savings </div>
             <div id=savingsDisplay6 style="font-size: .7rem; color: #9e9e9e;">  </div>
             <div id=savingsDisplay7 style="font-size: .7rem; color: #9e9e9e;">  </div>
             <div id=savingsDisplay8 style="font-size: .7rem; color: #9e9e9e;">  </div>
@@ -81,6 +107,7 @@
       </div>
     </form>
   </div>
+
 
 
   <script src="js/nouislider.js"></script>

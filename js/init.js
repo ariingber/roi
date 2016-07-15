@@ -1,9 +1,9 @@
 //global variables and dom element captture
 var costOfInvestment = 0;
-var yearsOfInvestment = 0;
-var avgEmergHospVis = 0;
-var openFieldValue =0;
-var baseSolution = 0;
+var puffsPerDay = 0;
+var estimAdhere = 0;
+var numberOfPatients = 0;
+var actuaPerCan = 0;
 
 var savingDisplay1 = document.getElementById('savingDisplay1');
 var roiDisplay1 = document.getElementById('roiDisplay1');
@@ -26,33 +26,39 @@ var roiDisplay9 = document.getElementById('roiDisplay9');
 var savingsDisplay10 = document.getElementById('savingsDisplay10');
 var roiDisplay10 = document.getElementById('roiDisplay10');
 
-var sliderValueAvgEmergVisit = document.getElementById('slider-valueAvgEmergVisit');
-var sliderValueYearsOfInvestment = document.getElementById('slider-valueYearsOfInvestment');
-var sliderValueCostOfInvestment = document.getElementById('slider-valueCostOfInvestment');
-var slideAvgEmergVisit = document.getElementById('slideAvgEmergVisit');
+var sliderValueEstimAdhere = document.getElementById('slider-valueEstimAdhere');
+var sliderValuePuffsPerDay = document.getElementById('slider-valuePuffsPerDay');
+var sliderValueActuaPerCan = document.getElementById('slider-valueActuaPerCan');
 
 var savingsDisplays = [ savingsDisplay1, savingsDisplay2, savingsDisplay3,
   savingsDisplay4, savingsDisplay5, savingsDisplay6,savingsDisplay7,
   savingsDisplay8, savingsDisplay9, savingsDisplay10 ]
 var roiDisplays = [ roiDisplay1, roiDisplay2, roiDisplay3, roiDisplay4,
   roiDisplay5, roiDisplay6, roiDisplay7, roiDisplay8, roiDisplay9, roiDisplay10 ]
-
+var percentLifts = [ 1.4, 1.38, 1.3, 1.2, 1.1 ]
+var years = [1,2,3,4,5,6,7,8,9,10]
+  ///////////////////////////////////////////////////////////////////////////////
 
 
 
 //create sliders
-noUiSlider.create(slideAvgEmergVisit, {
-  start: 0.00,
+noUiSlider.create(slideEstimAdhere, {
+  start: 46,
+  step: 1,
   connect: 'lower',
   range: {
     'min': 0,
-    'max': 3
-  }
+    'max': 100
+  },
+  format: wNumb({
+		decimals: false,
+		prefix: ' %',
+	})
 });
 
-var slideYearsOfInvestment = document.getElementById('slideYearsOfInvestment');
-noUiSlider.create(slideYearsOfInvestment, {
-  start: 0,
+var slidePuffsPerDay = document.getElementById('slidePuffsPerDay');
+noUiSlider.create(slidePuffsPerDay, {
+  start: 4,
   step: 1,
   format: wNumb({
 		decimals: false
@@ -64,48 +70,77 @@ noUiSlider.create(slideYearsOfInvestment, {
   }
 });
 
+var slideActuaPerCan = document.getElementById('slideActuaPerCan');
+noUiSlider.create(slideActuaPerCan, {
+  start: 60,
+  step: 1,
+  format: wNumb({
+		decimals: false
+	}),
+  connect: 'lower',
+  range: {
+    'min': 30,
+    'max': 300
+  }
+});
+////////////////////////////////////
 
-//call correct changes function depending on slider or input field
-slideAvgEmergVisit.noUiSlider.on('update', changesEmergVisit);
-slideYearsOfInvestment.noUiSlider.on('update', changesYearsOfInvest);
 
 
-function changesEmergVisit ( values, handle ) {
-  avgEmergHospVis = parseFloat(values[handle]);
+//create functions to be called when changes are made
+function changesEstimAdhere ( values, handle ) {
+  var stringEstimAdhereVal = values + '';
+  EstimAdhere = parseInt(stringEstimAdhereVal.replace(/\D/g,''));
   chartUpdate()
 };
 
-function changesYearsOfInvest ( values, handle ) {
-  yearsOfInvestment = parseInt(values[handle]);
+function changesPuffsPerDay ( values, handle ) {
+  puffsPerDay = parseInt(values[handle]);
   chartUpdate()
 };
 
-//THIS IS THE OPEN FIELD VALUE JQUERY
+function changesActuaPerCan ( values, handle ) {
+  actuaPerCan = parseInt(values[handle]);
+  chartUpdate()
+};
+////////////////////////////////////////////////////////
+
+
+
+//call correct changes function depending on slider or input field changing
+slideEstimAdhere.noUiSlider.on('update', changesEstimAdhere);
+slidePuffsPerDay.noUiSlider.on('update', changesPuffsPerDay);
+slideActuaPerCan.noUiSlider.on('update', changesActuaPerCan);
+
+//THIS IS THE NUMBER OF PATIENTS VALUE JQUERY
 $('input').keyup( function() {
-  openFieldValue = parseInt($(this).val());
+  numberOfPatients = parseInt($(this).val());
   chartUpdate ();
 });
+/////////////////////////////////////////////////////////////////////////////
 
 
-
-//CHART UPDATE FORMULAS, LINES DRAWN, RIGHT SIDE VALUES UPADATED
+//CHART UPDATE FORMULAS, LINES DRAWN, RIGHT SIDE VALUES UPADATED, AND TEXT UNDERSLIDER UPADTES
 function chartUpdate () {
-  costOfInvestment = yearsOfInvestment * 1000;
-  sliderValueYearsOfInvestment.innerHTML = yearsOfInvestment;
-  sliderValueCostOfInvestment.innerHTML = costOfInvestment;
-  sliderValueAvgEmergVisit.innerHTML = avgEmergHospVis;
+  costOfInvestment = numberOfPatients;
+  // text underslider updates
+  sliderValueEstimAdhere.innerHTML = '% ' + EstimAdhere;
+  sliderValuePuffsPerDay.innerHTML = puffsPerDay;
+  sliderValueActuaPerCan.innerHTML = actuaPerCan;
 
 //ONE TIME COST LINE DRAWN
   for (i = 0; i <= 9; i++) {
-    myChart.data.datasets[1].data[i] = costOfInvestment;
+    myChart.data.datasets[0].data[i] = costOfInvestment;
   }
-  myChart.update();
 
-//EQUATION FOR EACH YEAR, PINK LINES DRAWN, ROI AND SAVINGS INNERHTML UPADATE
-  for (i = 0; i <= 9; i++) {
-    myChart.data.datasets[0].data[i] = (openFieldValue * avgEmergHospVis * (i+1)) - costOfInvestment;
-    savingsDisplays[i].innerHTML = '$' + ((openFieldValue * avgEmergHospVis * (i+1)) - costOfInvestment).toFixed(2);
-    roiDisplays[i].innerHTML = (((openFieldValue * avgEmergHospVis * (i+1)) - costOfInvestment)/costOfInvestment).toFixed(2);
+  // EQUATION FOR EACH YEAR, PINK LINES DRAWN, ROI AND SAVINGS INNERHTML UPADATE
+  for (j=1; j <= 5; j++) {
+    for (i = 0; i <= 9; i++) {
+      myChart.data.datasets[j].data[i] = (costOfInvestment * percentLifts[j] * years[i]) - costOfInvestment;
+      // savingsDisplays[i].innerHTML = '$' + ((numberOfPatients * EstimAdhere * (i+1)) - costOfInvestment).toFixed(2);
+      // roiDisplays[i].innerHTML = (((numberOfPatients * EstimAdhere * (i+1)) - costOfInvestment)/costOfInvestment).toFixed(2);
+    }
   }
-  myChart.update();
+    myChart.update();
+
 }

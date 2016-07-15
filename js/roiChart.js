@@ -5,10 +5,19 @@ var myChart = new Chart(ctx, {
       labels: ['1 Year', '2 Years', '3 Years', '4 Years', '5 Years', '6 Years', '7 Years', '8 Years', '9 Years', '10 Years'],
       datasets: [
         {
-          label: 'Yearly Savings in Dollars',
-          data: [3000, 6000, 9000, 11000, 13000, 20000, 20000, 20000, 20000, 20000],
+          label: 'Intial Investment',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          backgroundColor: "transparent",
+          borderColor: "#01579b",
+          pointRadius: 0,
+          borderWidth: 2.5,
+          borderDash: [1, 5]
+        },
+        {
+          label: '40% Lift in Adherance',
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           backgroundColor: [
-              'rgba(255, 99, 132, 0.2)'
+              'transparent'
           ],
           borderColor: [
               'rgba(255,99,132,1)'
@@ -16,13 +25,49 @@ var myChart = new Chart(ctx, {
           borderWidth: 1
       },
       {
-        label: 'Intial Investment',
-        data: [5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000],
-        backgroundColor: "transparent",
-        borderColor: "#428bca",
-        pointRadius: 0,
+        label: '38.2% Lift in Adherance (EXPECTED)',
+        data: [0, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000],
+        backgroundColor: [
+            'transparent'
+        ],
+        borderColor: [
+            '#00897b'
+        ],
+        borderWidth: 2.5
+      },
+      {
+        label: '30% Lift in Adherance',
+        data: [0, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000],
+        backgroundColor: [
+            'transparent'
+        ],
+        borderColor: [
+            '#00897b'
+        ],
         borderWidth: 1
-    }
+      },
+      {
+        label: '20% Lift in Adherance',
+        data: [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000],
+        backgroundColor: [
+            'transparent'
+        ],
+        borderColor: [
+            '#00897b'
+        ],
+        borderWidth: 1
+      },
+      {
+        label: '10% Lift in Adherance',
+        data: [0, 900, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000],
+        backgroundColor: [
+            'transparent'
+        ],
+        borderColor: [
+            '#00897b'
+        ],
+        borderWidth: 1
+      }
 
     ]
   },
